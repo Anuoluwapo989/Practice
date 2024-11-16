@@ -1,0 +1,62 @@
+/* This is the code for the first page */
+body {
+    margin: auto;
+    padding: 50px;
+    background-color: #F96167;
+    text-align: center;
+}
+
+/* @font-face {
+    font-family: myFirstFont;
+    src: url(sansation_light.woff);
+} */
+
+
+/* 
+    <uniquifier>: Use a unique and descriptive class name
+    <weight>: Use a value from 100 to 900
+  */
+.title {
+    color: #F9E795;
+    font-family: "Kablammo", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "MORF" 0;
+}
+
+p {
+    font-size: 200px;
+    margin: auto;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.start {
+    color: white;
+    width: 100px;
+    height: fit-content;
+    border: 5px black solid;
+    border-radius: 50px;
+    margin: auto;
+    background-color: black;
+}
+
+.start:hover {
+
+    color: black;
+    width: 100px;
+    height: fit-content;
+    border: 5px white solid;
+    border-radius: 50px;
+    margin: auto;
+    background-color: white;
+}
+
+#settings {
+    display: flex;
+    justify-content: flex-end;
+}

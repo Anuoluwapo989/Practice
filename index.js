@@ -1,0 +1,1 @@
+// Hala, you can work on the button for start and a function that takes it from page1.html to page2.html on click
