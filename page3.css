@@ -15,10 +15,10 @@ body {
     font-variation-settings:
         "MORF" 0; */
     
-    
 }
 
 .flipcard {
+    background-color: transparent;
     width: fit-content;
     perspective: 1000px;
 }
@@ -32,16 +32,19 @@ body {
     transform-style: preserve-3d;
     /*This is for how long the flip is performed for */
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
 }
 
-/* I am also going to try :active instead of :target for this */
+/* I am also going to try :active instead of :hover for this */
 /* flipcard-inner is also part of this so that it moves at the same time when clicked */
 .flipcard :hover.flipcard-inner {
     transform: rotateY(180deg);
 }
 
-.flipcard-front,
-.flipcard-back {
+.flipcard-front, .flipcard-back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -51,12 +54,12 @@ body {
 }
 
 .flipcard-front {
-    background-color: #bbb;
+    background-color: transparent;
     color: black;
 }
 
 .flipcard-back {
-    background-color: #2980b9;
+    background-color: transparent;
     color: white;
     transform: rotateY(180deg);
 }
