@@ -1,5 +1,6 @@
 body {
     /* Page Settings */
+    height: 100vw;
     margin: auto;
     padding: 50px;
     background-color: #F96167;
@@ -7,18 +8,32 @@ body {
     justify-items: center;
 
     /* Font Settings */
-    /* color: #F9E795;
+    color: #F9E795;
     font-family: "Kablammo", system-ui;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
     font-variation-settings:
-        "MORF" 0; */
-    
+        "MORF" 0;
+
 }
 
+#game-board {
+    position: relative;
+    width: 80%;
+    height: 500px;
+    display: flex;
+    /* Helps align child elements */
+    flex-wrap: wrap;
+    /* Ensures cards wrap if there are many */
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+}
+
+
 .flipcard {
-    background-color: transparent;
+    background-color: red;
     width: fit-content;
     perspective: 1000px;
 }
@@ -31,26 +46,28 @@ body {
     transition: transform 0.6s;
     transform-style: preserve-3d;
     /*This is for how long the flip is performed for */
-    box-shadow: 0 10px 20px 0 rgba(0, 0, 0 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
-   
+
 }
 
-/* I am also going to try :active instead of :hover for this */
 /* flipcard-inner is also part of this so that it moves at the same time when clicked */
-.flipcard :hover.flipcard-inner {
+
+.flipcard.flipped.flipcard-inner {
     transform: rotateY(180deg);
 }
 
-.flipcard-front, .flipcard-back {
+.flipcard-front,
+.flipcard-back {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100%; /* Match the width of the flipcard image */
+    height: 100%; /* Match the height of the flipcard image*/
+    position: absolute;
+    background-size: cover;
+    background-position: center;
     -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    /* These hide the back of the card after transforming */
+    backface-visibility: hidden; /* These hide the back of the card after transforming */
 }
 
 .flipcard-front {
