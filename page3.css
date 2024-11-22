@@ -1,5 +1,6 @@
 body {
     /* Page Settings */
+    padding: 0px;
     height: 100vw;
     margin: auto;
     padding: 50px;
@@ -23,19 +24,22 @@ body {
     width: 80%;
     height: 500px;
     display: flex;
-    /* Helps align child elements */
     flex-wrap: wrap;
-    /* Ensures cards wrap if there are many */
     justify-content: center;
     align-items: center;
     background-color: lightgray;
 }
 
 
+
 .flipcard {
     background-color: red;
-    width: fit-content;
+    width: 10vw;
+    height: 15vw;
     perspective: 1000px;
+    margin: 2px;
+    position: relative;
+    text-align: center;
 }
 
 .flipcard-inner {
@@ -54,7 +58,7 @@ body {
 
 /* flipcard-inner is also part of this so that it moves at the same time when clicked */
 
-.flipcard.flipped.flipcard-inner {
+.flipcard.flipped .flipcard-inner {
     transform: rotateY(180deg);
 }
 
@@ -73,10 +77,11 @@ body {
 .flipcard-front {
     background-color: transparent;
     color: black;
+    transform: rotateY(180deg);
 }
 
 .flipcard-back {
     background-color: transparent;
     color: white;
-    transform: rotateY(180deg);
+    
 }
