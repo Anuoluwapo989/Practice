@@ -42,7 +42,7 @@ function generateRandomNumber(size, min, max) {
 }
 
 var number = 8;
-//I want this to run only once so as to not inroduce any duplicates asides two of each.
+//I want this to run only once so as to not introduce any duplicates asides two of each.
 var arr = generateRandomNumber(number, 0, (number / 2) - 1);
 var arr_result = [];
 for (var j = 0; j < arr.length; j++) {
@@ -50,9 +50,7 @@ for (var j = 0; j < arr.length; j++) {
     console.log(arr_result[j]);
 }
 
-// while(getSelection.style.backgroundImage == arr_result[i]){
-    
-// }
+
 
 var time = 3000; //For how long the peek animation runs for
 
