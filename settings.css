@@ -1,0 +1,126 @@
+/* Page Settings */
+body {
+    margin: auto;
+    padding: 50px;
+    background-color: #969185;
+    text-align: center;
+    color: #f9db54;
+    font-family: "Kablammo", system-ui;
+}
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 60px;
+    margin-bottom: 30px;
+}
+
+/* Individual Setting Items */
+.setting {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+}
+
+/* Slider for Volume */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 70%;
+    height: 10px;
+    background: #F9E795;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 30px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #000;
+}
+
+input:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+/* Theme Selector Dropdown */
+select {
+    font-size: 18px;
+    padding: 5px;
+    border: none;
+    background-color: #F9E795;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Buttons */
+.buttons button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #F9E795;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    color: black;
+    font-family: "Kablammo", system-ui;
+}
+
+.buttons button:hover {
+    background-color: #000;
+    color: #f9db54;
+}

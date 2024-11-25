@@ -42,7 +42,7 @@ function generateRandomNumber(size, min, max) {
 }
 
 var number = 8;
-//I want this to run only once so as to not inroduce any duplicates asides two of each.
+//I want this to run only once so as to not introduce any duplicates asides two of each.
 var arr = generateRandomNumber(number, 0, (number / 2) - 1);
 var arr_result = [];
 for (var j = 0; j < arr.length; j++) {
@@ -50,9 +50,7 @@ for (var j = 0; j < arr.length; j++) {
     console.log(arr_result[j]);
 }
 
-// while(getSelection.style.backgroundImage == arr_result[i]){
-    
-// }
+
 
 var time = 3000; //For how long the peek animation runs for
 
@@ -71,59 +69,96 @@ function peekaboo(runtime) {
     }, runtime);
 }
 
-// function nope(runtime) {
-    
-//     setTimeout(() => {
-//         cards.classList.remove('flipped');
-//     }, runtime);
-// }
-
-
 //We then have to Call this function to trigger the peekaboo effect
 
 // console.log(gameboard.children);
 
+function getFileNames(folderPath) {
+    const fileName = [];
+    const files = folderPath.files;
 
-const gameboard = document.getElementById("game-board");
-var counter = 0;
+    for (let i = 0; i < files.length; i++) {
+        fileName.push(files[i].name);
+    }
 
-//Storing the names of the card images in an array
-const flipcardFrontImages =
-    ['spades.png',
-        'clubs.png',
-        'heart.png',
-        'diamond.png',
-        'clubten.png'
-    ];
-const flipcardBackImages = 'blank.png';
-
-// This just runs for the number implied when the user chooses the level.
-for (var i = 0; i < number; i++) {
-    // we have to make the back of the card in JS instead of using CSS.
-    const flipcard = document.createElement("div");
-    flipcard.classList.add("flipcard"); //This adds a class for the div element.
-
-    const flipcardInner = document.createElement("div");
-    flipcardInner.classList.add("flipcard-inner");
-
-    const flipcardFront = document.createElement("div");
-    flipcardFront.classList.add("flipcard-front");
-    flipcardFront.style.backgroundImage = `url('${flipcardFrontImages[arr_result[i]]}')`;
-
-    const flipcardBack = document.createElement("div");
-    flipcardBack.classList.add("flipcard-back");
-    flipcardBack.style.backgroundImage = `url('${flipcardBackImages}')`;
-
-    flipcardInner.appendChild(flipcardFront); //We then have to add the front and back to flipcardInner
-    flipcardInner.appendChild(flipcardBack);
-
-    flipcard.appendChild(flipcardInner); //We also need to add the inner flipcard to its parent, flipcard.
-
-    // I had to look this one up, idk what's happening here but I guess it should just be an event listener that checks if the user is clicking
-    flipcard.addEventListener('click', () => {
-        flipcard.classList.toggle('flipped');
-    });
-
-    gameboard.appendChild(flipcard);
-
+    return fileName;
 }
+
+    let flippedCards = [];
+
+
+    function checkGameStatus() {
+        flippedCards = Array.from(document.querySelectorAll(".flipcard.flipped"));
+        var counter = 0;
+        if (flippedCards.length === 2) {
+            // Check if the flipped cards match
+            const [card1, card2] = flippedCards;
+            const front1 = card1.querySelector(".flipcard-front").style.backgroundImage;
+            const front2 = card2.querySelector(".flipcard-front").style.backgroundImage;
+
+            if (front1 === front2) {
+                // Match found, leave cards flipped
+                flippedCards = [];
+                counter++;
+                var count = document.createElement('div');
+                count.classList.add('points');
+                count.innerText("Your score is: " + counter);
+                count.appendChild(gameboard);
+            } else {
+                // Not a match, unflip cards after a short delay
+                setTimeout(() => {
+                    card1.classList.remove("flipped");
+                    card2.classList.remove("flipped");
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+    }
+
+    const gameboard = document.getElementById("game-board");
+    var counter = 0;
+
+    //Storing the names of the card images in an array
+    var flipcardFrontImages =
+    ['./images/2C.png',
+        './images/2D.png',
+        './images/2S.png',
+        './images/2H.png',
+        './images/AS.png'
+    ];
+
+
+    const flipcardBackImages = './images/purple_back.png';
+
+    // This just runs for the number implied when the user chooses the level.
+    for (var i = 0; i < number; i++) {
+        // we have to make the back of the card in JS instead of using CSS.
+        const flipcard = document.createElement("div");
+        flipcard.classList.add("flipcard"); //This adds a class for the div element.
+
+        const flipcardInner = document.createElement("div");
+        flipcardInner.classList.add("flipcard-inner");
+
+        const flipcardFront = document.createElement("div");
+        flipcardFront.classList.add("flipcard-front");
+        flipcardFront.style.backgroundImage = `url('${flipcardFrontImages[arr_result[i]]}')`;
+
+        const flipcardBack = document.createElement("div");
+        flipcardBack.classList.add("flipcard-back");
+        flipcardBack.style.backgroundImage = `url('${flipcardBackImages}')`;
+
+        flipcardInner.appendChild(flipcardFront); //We then have to add the front and back to flipcardInner
+        flipcardInner.appendChild(flipcardBack);
+
+        flipcard.appendChild(flipcardInner); //We also need to add the inner flipcard to its parent, flipcard.
+
+        // I had to look this one up, idk what's happening here but I guess it should just be an event listener that checks if the user is clicking
+        flipcard.addEventListener('click', () => {
+            flipcard.classList.toggle('flipped');
+        });
+
+        gameboard.appendChild(flipcard);
+
+    }
+
+checkGameStatus();
