@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings</title>
+    <link rel="stylesheet" href="settings.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Kablammo&family=Playfair+Display:ital,wght@1,400..900&display=swap');
+    </style>
+</head>
+
+<body>
+    <div class="settings-container">
+        <h1>Settings</h1>
+        
+        <!-- Volume Slider -->
+        <div class="setting">
+            <label for="volume">Volume:</label>
+            <input type="range" id="volume" min="0" max="100" value="50">
+        </div>
+        
+        <!-- Music Toggle -->
+        <div class="setting">
+            <label for="music-toggle">Music:</label>
+            <label class="switch">
+                <input type="checkbox" id="music-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <!-- Theme Selector -->
+        <div class="setting">
+            <label for="theme-selector">Theme:</label>
+            <select id="theme-selector">
+                <option value="default">Default</option>
+                <option value="dark">Dark Mode</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="orange">Orange</option>
+            </select>
+        </div>
+
+        <!-- Back and Save Buttons -->
+        <div class="buttons">
+            <button id="back-button">Back</button>
+            <button id="save-button">Save</button>
+        </div>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+
+</html>
