@@ -87,11 +87,11 @@ var counter = 0;
 
 //Storing the names of the card images in an array
 const flipcardFrontImages =
-    ['spades.png',
-        'clubs.png',
-        'heart.png',
-        'diamond.png',
-        'clubten.png'
+    ['./spades.png',
+        './clubs.png',
+        './heart.png',
+        './diamond.png',
+        './clubten.png'
     ];
 const flipcardBackImages = 'blank.png';
 
