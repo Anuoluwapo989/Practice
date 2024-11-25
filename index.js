@@ -11,7 +11,7 @@
 // I might just track input from the settings page
 
 //I also decided to put the card images in an array for organization and also randomization
-var count = 0; //This variable counts the index of the
+var count = 0; //This variable is the index of the score
 var inc = []; //Stores all the random values generated
 function generateRandomNumber(size, min, max) {
     var rand = Number(Math.floor(Math.random() * max)); //This generates a number between 0 and the number you specified
@@ -21,7 +21,7 @@ function generateRandomNumber(size, min, max) {
             inc.push(randomValue);
         }
         else {
-            if (inc.length < max) {
+            if (inc.length <= max) {
                 generateRandomNumber(size, min, max); //Recursively generates a random number
             }
             else {
@@ -41,26 +41,61 @@ function generateRandomNumber(size, min, max) {
 
 }
 
-
-
+var number = 8;
 //I want this to run only once so as to not inroduce any duplicates asides two of each.
-
-
-var arr = generateRandomNumber(8, 0, 4);
+var arr = generateRandomNumber(number, 0, (number / 2) - 1);
 var arr_result = [];
 for (var j = 0; j < arr.length; j++) {
     arr_result[j] = arr[j];
     console.log(arr_result[j]);
 }
 
+// while(getSelection.style.backgroundImage == arr_result[i]){
+    
+// }
 
-const flipcardFrontImages = ['spades.png','clubs.png','heart.png','diamond.png'];
+var time = 3000; //For how long the peek animation runs for
 
-const flipcardBackImages = 'blank.png';
+function peekaboo(runtime) {
+    const cards = document.querySelectorAll('.flipcard');
+    // Use a regular for loop to add the 'flipped' class
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].classList.add('flipped'); // Show all cards
+    }
 
-var number = 8;
-const gameboard = document.getElementById("game-board");
+    // Set a timeout to remove the 'flipped' class after runtime
+    setTimeout(() => {
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].classList.remove('flipped'); // Hide all cards
+        }
+    }, runtime);
+}
+
+// function nope(runtime) {
+    
+//     setTimeout(() => {
+//         cards.classList.remove('flipped');
+//     }, runtime);
+// }
+
+
+//We then have to Call this function to trigger the peekaboo effect
+
 // console.log(gameboard.children);
+
+
+const gameboard = document.getElementById("game-board");
+var counter = 0;
+
+//Storing the names of the card images in an array
+const flipcardFrontImages =
+    ['spades.png',
+        'clubs.png',
+        'heart.png',
+        'diamond.png',
+        'clubten.png'
+    ];
+const flipcardBackImages = 'blank.png';
 
 // This just runs for the number implied when the user chooses the level.
 for (var i = 0; i < number; i++) {
@@ -68,10 +103,8 @@ for (var i = 0; i < number; i++) {
     const flipcard = document.createElement("div");
     flipcard.classList.add("flipcard"); //This adds a class for the div element.
 
-
     const flipcardInner = document.createElement("div");
     flipcardInner.classList.add("flipcard-inner");
-
 
     const flipcardFront = document.createElement("div");
     flipcardFront.classList.add("flipcard-front");
@@ -94,4 +127,3 @@ for (var i = 0; i < number; i++) {
     gameboard.appendChild(flipcard);
 
 }
-
