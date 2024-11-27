@@ -84,3 +84,23 @@ body {
     color: white;
     
 }
+
+#score-display{
+    background-color:#F9E795;
+    width: 200px;
+    height: 100px;
+    font: 100;
+    font-family: 'Courier New', Courier, monospace;
+    justify-content: left;
+
+}
+
+.flipcard.matched::after {
+    content: "✔"; /* Adds a checkmark */
+    font-size: 3em;
+    color: green;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+}

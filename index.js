@@ -20,14 +20,18 @@ function generateRandomNumber(size, min, max) {
         if (!inc.includes(randomValue)) {
             inc.push(randomValue);
         }
-        else {
-            if (inc.length <= max) {
-                generateRandomNumber(size, min, max); //Recursively generates a random number
-            }
-            else {
-                console.log("There are no numbers available, sorry. :("); //This means that all the numbers between 0 and the maximum number has been specified already
-                return false;
-            }
+        // else {
+        //     if (inc.length <= max) {
+        //         generateRandomNumber(size, min, max); //Recursively generates a random number
+        //     }
+        //     else {
+        //         console.log("There are no numbers available, sorry. :("); //This means that all the numbers between 0 and the maximum number has been specified already
+        //         return false;
+        //     }
+        // }
+        if (inc.length > max - min + 1) {
+            console.log("No numbers available, stopping generation.");
+            break;
         }
     }
 
@@ -53,9 +57,10 @@ for (var j = 0; j < arr.length; j++) {
 
 
 var time = 3000; //For how long the peek animation runs for
-
+var isPeekabooActive = false;
 function peekaboo(runtime) {
-    const cards = document.querySelectorAll('.flipcard');
+    isPeekabooActive = true;
+    var cards = document.querySelectorAll('.flipcard');
     // Use a regular for loop to add the 'flipped' class
     for (let i = 0; i < cards.length; i++) {
         cards[i].classList.add('flipped'); // Show all cards
@@ -67,59 +72,34 @@ function peekaboo(runtime) {
             cards[i].classList.remove('flipped'); // Hide all cards
         }
     }, runtime);
+
 }
+
+
 
 //We then have to Call this function to trigger the peekaboo effect
 
-// console.log(gameboard.children);
 
-function getFileNames(folderPath) {
-    const fileName = [];
-    const files = folderPath.files;
+// var path = './images';
+// function getFileNames(folderPath) {
+//     const fileName = [];
+//     const file = folderPath.files;
 
-    for (let i = 0; i < files.length; i++) {
-        fileName.push(files[i].name);
-    }
+//     for (let i = 0; i < file.length; i++) {
+//         fileName.push(file[i].name);
+//     }
+//     console.log(fileName);
+//     return fileName;
+// }
 
-    return fileName;
-}
+// console.log(getFileNames(path));
 
-    let flippedCards = [];
+// let flippedCards = [];
 
+const gameboard = document.getElementById("game-board");
 
-    function checkGameStatus() {
-        flippedCards = Array.from(document.querySelectorAll(".flipcard.flipped"));
-        var counter = 0;
-        if (flippedCards.length === 2) {
-            // Check if the flipped cards match
-            const [card1, card2] = flippedCards;
-            const front1 = card1.querySelector(".flipcard-front").style.backgroundImage;
-            const front2 = card2.querySelector(".flipcard-front").style.backgroundImage;
-
-            if (front1 === front2) {
-                // Match found, leave cards flipped
-                flippedCards = [];
-                counter++;
-                var count = document.createElement('div');
-                count.classList.add('points');
-                count.innerText("Your score is: " + counter);
-                count.appendChild(gameboard);
-            } else {
-                // Not a match, unflip cards after a short delay
-                setTimeout(() => {
-                    card1.classList.remove("flipped");
-                    card2.classList.remove("flipped");
-                    flippedCards = [];
-                }, 1000);
-            }
-        }
-    }
-
-    const gameboard = document.getElementById("game-board");
-    var counter = 0;
-
-    //Storing the names of the card images in an array
-    var flipcardFrontImages =
+//Storing the names of the card images in an array
+var flipcardFrontImages =
     ['./images/2C.png',
         './images/2D.png',
         './images/2S.png',
@@ -127,38 +107,123 @@ function getFileNames(folderPath) {
         './images/AS.png'
     ];
 
+const flipcardBackImages = './images/purple_back.png';
 
-    const flipcardBackImages = './images/purple_back.png';
+// This just runs for the number implied when the user chooses the level.
+for (var i = 0; i < number; i++) {
+    // we have to make the back of the card in JS instead of using CSS.
+    const flipcard = document.createElement("div");
+    flipcard.classList.add("flipcard"); //This adds a class for the div element.
 
-    // This just runs for the number implied when the user chooses the level.
-    for (var i = 0; i < number; i++) {
-        // we have to make the back of the card in JS instead of using CSS.
-        const flipcard = document.createElement("div");
-        flipcard.classList.add("flipcard"); //This adds a class for the div element.
+    const flipcardInner = document.createElement("div");
+    flipcardInner.classList.add("flipcard-inner");
 
-        const flipcardInner = document.createElement("div");
-        flipcardInner.classList.add("flipcard-inner");
+    const flipcardFront = document.createElement("div");
+    flipcardFront.classList.add("flipcard-front");
+    flipcardFront.style.backgroundImage = `url('${flipcardFrontImages[arr_result[i]]}')`;
 
-        const flipcardFront = document.createElement("div");
-        flipcardFront.classList.add("flipcard-front");
-        flipcardFront.style.backgroundImage = `url('${flipcardFrontImages[arr_result[i]]}')`;
+    const flipcardBack = document.createElement("div");
+    flipcardBack.classList.add("flipcard-back");
+    flipcardBack.style.backgroundImage = `url('${flipcardBackImages}')`;
 
-        const flipcardBack = document.createElement("div");
-        flipcardBack.classList.add("flipcard-back");
-        flipcardBack.style.backgroundImage = `url('${flipcardBackImages}')`;
+    flipcardInner.appendChild(flipcardFront); //We then have to add the front and back to flipcardInner
+    flipcardInner.appendChild(flipcardBack);
 
-        flipcardInner.appendChild(flipcardFront); //We then have to add the front and back to flipcardInner
-        flipcardInner.appendChild(flipcardBack);
+    flipcard.appendChild(flipcardInner); //We also need to add the inner flipcard to its parent, flipcard.
 
-        flipcard.appendChild(flipcardInner); //We also need to add the inner flipcard to its parent, flipcard.
+    // I had to look this one up, idk what's happening here but I guess it should just be an event listener that checks if the user is clicking
+    flipcard.addEventListener('click', () => {
+        if (!isPeekabooActive && !flipcard.classList.contains("flipped") && !flipcard.classList.contains("matched")) {
+            flipcard.classList.add("flipped");
+            checkGameStatus();
+        }
+    });
 
-        // I had to look this one up, idk what's happening here but I guess it should just be an event listener that checks if the user is clicking
-        flipcard.addEventListener('click', () => {
-            flipcard.classList.toggle('flipped');
-        });
+    gameboard.appendChild(flipcard);
 
-        gameboard.appendChild(flipcard);
+}
 
+var counter = 0;
+
+function updateScore(score) {
+    let scoreDisplay = document.getElementById("score-display");
+
+    if (!scoreDisplay) {
+        scoreDisplay = document.createElement("div");
+        scoreDisplay.id = "score-display";
+        document.body.appendChild(scoreDisplay);
     }
 
-checkGameStatus();
+    scoreDisplay.textContent = `Your score is: ${score}`;
+    console.log("Your Score:", score);
+}
+
+// var level = querySelector("button").value;
+
+// function setDifficulty(level) {
+//     if (level === "easy") number = 4;
+//     else if (level === "medium") number = 8;
+//     else if (level === "hard") number = 16;
+
+//     console.log("Difficulty set to", level, "with number of cards:", number);
+
+// }
+
+function startGame(time) {
+    peekaboo(time);
+
+    document.querySelectorAll(".flipcard").forEach(cards => {
+        cards.addEventListener("click", () => {
+            if (!cards.classList.contains("flipped")) {
+                cards.classList.add("flipped");
+                checkGameStatus();
+            }
+        });
+    });
+}
+
+function checkGameStatus() {
+    console.log("checkGameStatus called");
+    const flippedCards = Array.from(document.querySelectorAll(".flipped:not(.matched)")); //This ":not" apparently selects the ones without matched in it
+
+
+    if (flippedCards.length === 2) { 
+
+        var [card1, card2] = flippedCards;
+        var front1 = card1.querySelector(".flipcard-front").style.backgroundImage;
+        var front2 = card2.querySelector(".flipcard-front").style.backgroundImage;
+        console.log(front1);
+        console.log(front2);
+
+        setTimeout(() => {
+            if (front1 === front2) { // Check if the flipped cards match
+            
+                counter++;
+                updateScore(counter);    //Use the helper function to update the score
+                //Remove the flipped class
+                flippedCards.forEach(cards => {
+                    cards.classList.add("matched");
+                });
+    
+                if (document.querySelectorAll(".matched").length === number) {
+                    setTimeout(() => alert("Congratulations, you win!"), 500);  //Tbh we can make this anything we want
+                    console.log("Congrats!");
+                }
+    
+            } else {
+                // Not a match, unflip cards after a short delay
+                console.log("No match, unflipping cards.");
+                setTimeout(() => {
+                    flippedCards.forEach(cards => cards.classList.remove("flipped"));
+                }, 1000);
+    
+            }
+        }, 500);
+        
+    }
+
+
+}
+
+
+
