@@ -114,3 +114,91 @@ body {
     left: 50%;
 
 }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+/*Hala's code*/
+
+
+
+/* body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+.game-container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.score-panel {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin: 0 auto 20px;
+    font-size: 1.2em;
+}
+
+.card-board {
+    display: grid;
+    gap: 10px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.card {
+    width: 100px;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-image: url('backC.png');
+    background-size: cover;
+    cursor: pointer;
+    transition: transform 0.4s;
+}
+
+.card.flip {
+    background-size: contain;
+    transform: rotateY(180deg);
+}
+
+.card.matched {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.restart-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.restart-button:hover {
+    background-color: #0056b3;
+}
+*/
