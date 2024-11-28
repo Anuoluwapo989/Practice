@@ -152,6 +152,7 @@ function updateScore(score) {
         scoreDisplay = document.createElement("div");
         scoreDisplay.id = "score-display";
         document.body.appendChild(scoreDisplay);
+        scoreDisplay.style.visibility = "visible";
     }
 
     scoreDisplay.textContent = `Your score is: ${score}`;

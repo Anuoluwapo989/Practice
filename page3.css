@@ -14,9 +14,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    font-variation-settings:
-        "MORF" 0;
-
+    font-variation-settings: "MORF" 0;
 }
 
 #game-board {
@@ -28,8 +26,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-
 
 .flipcard {
     background-color: transparent;
@@ -52,7 +48,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 /* flipcard-inner is also part of this so that it moves at the same time when clicked */
@@ -64,13 +59,16 @@ body {
 .flipcard-front,
 .flipcard-back {
     position: absolute;
-    width: 100%; /* Match the width of the flipcard image */
-    height: 100%; /* Match the height of the flipcard image*/
+    width: 100%;
+    /* Match the width of the flipcard image */
+    height: 100%;
+    /* Match the height of the flipcard image*/
     position: absolute;
     background-size: cover;
     background-position: center;
     -webkit-backface-visibility: hidden;
-    backface-visibility: hidden; /* These hide the back of the card after transforming */
+    backface-visibility: hidden;
+    /* These hide the back of the card after transforming */
 }
 
 .flipcard-front {
@@ -82,25 +80,37 @@ body {
 .flipcard-back {
     background-color: transparent;
     color: white;
-    
+
 }
 
-#score-display{
-    background-color:#F9E795;
+#score-display {
+    background-color: #F96167;
+    color: black;
     width: 200px;
     height: 100px;
-    font: 100;
-    font-family: 'Courier New', Courier, monospace;
-    justify-content: left;
+    justify-content: center;
+    float: left;
+
+    /* Font Settings */
+    color: #F9E795;
+    font-family: "Kablammo", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "MORF" 0;
+
 
 }
 
 .flipcard.matched::after {
-    content: "✔"; /* Adds a checkmark */
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    content: "✔";
+    /* Adds a checkmark */
     font-size: 3em;
     color: green;
     position: absolute;
     top: 50%;
     left: 50%;
-    
+
 }
