@@ -13,6 +13,7 @@
 // //I also decided to put the card images in an array for organization and also randomization
 // var count = 0; //This variable is the index of the score
 // var inc = []; //Stores all the random values generated
+//
 // function generateRandomNumber(size, min, max) {
 //     var rand = Number(Math.floor(Math.random() * max)); //This generates a number between 0 and the number you specified
 //     while (inc.length < size / 2) {
