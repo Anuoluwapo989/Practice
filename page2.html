@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset='utf-8'>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-        Welcome
-    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
     <link rel="stylesheet" href="page2.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Kablammo&family=Playfair+Display:ital,wght@1,400..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Kablammo&display=swap');
     </style>
-
 </head>
-
 <body>
+    <div class="settings" onclick="location.href='settings.html'">
+        <img src="settings.png" alt="Settings Icon">
+    </div>
+
     <div class="intro">
         <p>
             Welcome to the Memory Game made by Anu A. and Hala A. We hope you brought your thinking cap! This is a fun
-            game that puts your memory and skill to the test.
-    
-            Press any key to Continue.
+            game that puts your memory and skill to the test. Press any key to continue.
         </p>
     </div>
-    
+
+    <script src="common.js"></script>
+    <script src="theme.js"></script>
+    <script src="index.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            playBackgroundMusic();
+            // Apply theme
+            const settings = JSON.parse(localStorage.getItem('settings')) || { theme: 'default' };
+            themeManager.applyTheme(settings.theme);
+        });
+    </script>
 </body>
 </html>

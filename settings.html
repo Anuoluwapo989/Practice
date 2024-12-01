@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
     <link rel="stylesheet" href="settings.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Kablammo&family=Playfair+Display:ital,wght@1,400..900&display=swap');
-    </style>
 </head>
-
 <body>
     <div class="settings-container">
         <h1>Settings</h1>
         
-        <!-- Volume Slider -->
+        <!-- Music Volume Slider -->
         <div class="setting">
-            <label for="volume">Volume:</label>
-            <input type="range" id="volume" min="0" max="100" value="50">
+            <label for="music-volume">Music Volume:</label>
+            <input type="range" id="music-volume" min="0" max="100" value="50">
+        </div>
+        
+        <!-- Effects Volume Slider -->
+        <div class="setting">
+            <label for="effects-volume">Effects Volume:</label>
+            <input type="range" id="effects-volume" min="0" max="100" value="50">
         </div>
         
         <!-- Music Toggle -->
         <div class="setting">
             <label for="music-toggle">Music:</label>
             <label class="switch">
-                <input type="checkbox" id="music-toggle">
+                <input type="checkbox" id="music-toggle" checked>
                 <span class="slider"></span>
             </label>
         </div>
@@ -35,22 +36,12 @@
             <label for="theme-selector">Theme:</label>
             <select id="theme-selector">
                 <option value="default">Default</option>
-                <option value="dark">Dark Mode</option>
+                <option value="purple">Purple</option>
                 <option value="red">Red</option>
                 <option value="blue">Blue</option>
-                <option value="orange">Orange</option>
-            </select>
-        </div>
-
-        <!-- Difficulty Selector -->
-        <div class="setting">
-            <label for="difficulty">Difficulty:</label>
-            <select id="difficulty">
-                <option value="super-easy">Super Easy</option>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-                <option value="extra-hard">Extra Hard</option>
+                <option value="gray">Gray</option>
+                <option value="green">Green</option>
+                <option value="dark">Dark</option>
             </select>
         </div>
 
@@ -62,6 +53,6 @@
     </div>
 
     <script src="settings.js"></script>
+    <script src="theme.js"></script>
 </body>
-
 </html>
