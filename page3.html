@@ -1,5 +1,6 @@
 <!-- <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
     <head>
         <meta charset='utf-8'>
@@ -46,16 +47,26 @@ pay attention to file names cause on my computer I have a separet js filer for p
 
 <!DOCTYPE html>
 <html lang="en">
+=======
+>>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Card Game</title>
     <link rel="stylesheet" href="page3.css">
     <style>
+<<<<<<< HEAD
         @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Kablammo&family=Playfair+Display:ital,wght@1,400..900&display=swap');
+=======
+        @import url('https://fonts.googleapis.com/css2?family=Kablammo&display=swap');
+>>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
     </style>
 </head>
 <body>
+    <div class="settings" onclick="location.href='settings.html'">
+        <img src="settings.png" alt="Settings Icon">
+    </div>
+
     <div class="game-container">
         <h1>Memory Card Game</h1>
         <div class="score-panel">
@@ -65,6 +76,28 @@ pay attention to file names cause on my computer I have a separet js filer for p
         <div id="card-board" class="card-board"></div>
         <button id="restart" class="restart-button">Restart Game</button>
     </div>
+
+    <div class="congrats-panel" id="congrats-panel">
+        <p>Congratulations, <span id="player-name"></span>! You've completed this level!</p>
+        <button id="next-level">Next Level</button>
+        <button id="home">Back to Home</button>
+    </div>
+
     <script src="page3.js"></script>
+    <script src="common.js"></script>
+    <script src="theme.js"></script>
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            playBackgroundMusic();
+            // Apply theme
+            const settings = JSON.parse(localStorage.getItem('settings')) || { theme: 'default' };
+            themeManager.applyTheme(settings.theme);
+        });
+    </script>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
