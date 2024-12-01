@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 // // Hala, you can work on the button for start and a function that takes it from page1.html to page2.html on click.
 // //We need to have a function that spawns two of each card type onto the page at random slots
@@ -249,7 +248,6 @@ const cardDeck = [
     "KC", "KD", "KH", "KS"
 ].map(name => `./images/${name}`);
 
-=======
 "use strict";
 
 // Load settings from localStorage
@@ -278,7 +276,7 @@ if (settings.music) {
 }
 
 // Card deck
-const cardDeck = [
+var cardDeck = [
     "2C.png", "2D.png", "2H.png", "2S.png", "3C.png", "3D.png", "3H.png", "3S.png",
     "4C.png", "4D.png", "4H.png", "4S.png", "5C.png", "5D.png", "5H.png", "5S.png",
     "6C.png", "6D.png", "6H.png", "6S.png", "7C.png", "7D.png", "7H.png", "7S.png",
@@ -289,7 +287,6 @@ const cardDeck = [
 ];
 
 // Game state variables
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
 let level = 1;
 let score = 0;
 let firstCard = null;
