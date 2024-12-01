@@ -292,22 +292,13 @@ let score = 0;
 let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
-<<<<<<< HEAD
-
-=======
 let isPaused = false;
 
 // DOM elements
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
 const cardBoard = document.getElementById('card-board');
 const levelDisplay = document.getElementById('level');
 const scoreDisplay = document.getElementById('score');
 const restartButton = document.getElementById('restart');
-<<<<<<< HEAD
-
-restartButton.addEventListener('click', startGame);
-
-=======
 const congratsPanel = document.getElementById('congrats-panel');
 const playerName = localStorage.getItem('playerName') || "Player";
 
@@ -323,7 +314,6 @@ document.querySelector('.settings').addEventListener('click', () => {
 });
 
 // Start a new game
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
 function startGame() {
     level = 1;
     score = 0;
@@ -331,24 +321,12 @@ function startGame() {
     generateLevel();
 }
 
-<<<<<<< HEAD
-=======
 // Update the score display
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
 function updateScore() {
     levelDisplay.textContent = `Level: ${level}`;
     scoreDisplay.textContent = `Score: ${score}`;
 }
 
-<<<<<<< HEAD
-function generateLevel() {
-    cardBoard.innerHTML = '';
-    const numCards = level * 2 + 2;
-    const cards = [...cardDeck].sort(() => Math.random() - 0.5).slice(0, numCards / 2);
-    const cardPairs = [...cards, ...cards].sort(() => Math.random() - 0.5);
-
-    cardBoard.style.gridTemplateColumns = `repeat(${Math.ceil(numCards / 4)}, 1fr)`;
-=======
 // Generate a new level
 function generateLevel() {
     cardBoard.innerHTML = '';
@@ -362,22 +340,16 @@ function generateLevel() {
     cardBoard.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
     cardBoard.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
 
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
     cardPairs.forEach(card => {
         const cardElement = document.createElement('div');
         cardElement.classList.add('card');
         cardElement.dataset.card = card;
         cardElement.addEventListener('click', flipCard);
-<<<<<<< HEAD
-=======
         cardElement.style.backgroundImage = `url('backC.png')`;  // Show card back initially
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
         cardBoard.appendChild(cardElement);
     });
 }
 
-<<<<<<< HEAD
-=======
 // Get flip duration based on difficulty
 function getFlipDuration() {
     switch (settings.difficulty) {
@@ -391,25 +363,11 @@ function getFlipDuration() {
 }
 
 // Flip a card
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
 function flipCard() {
     if (lockBoard) return;
     if (this === firstCard) return;
 
     this.classList.add('flip');
-<<<<<<< HEAD
-    this.style.backgroundImage = `url(${this.dataset.card}.png)`;
-
-    if (!firstCard) {
-        firstCard = this;
-    } else {
-        secondCard = this;
-        lockBoard = true;
-        checkForMatch();
-    }
-}
-
-=======
     this.style.backgroundImage = `url(${this.dataset.card})`;
 
     if (!firstCard) {
@@ -423,20 +381,11 @@ function flipCard() {
 }
 
 // Check if two flipped cards match
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
 function checkForMatch() {
     const isMatch = firstCard.dataset.card === secondCard.dataset.card;
 
     if (isMatch) {
         disableCards();
-<<<<<<< HEAD
-        score++;
-        if (cardBoard.querySelectorAll('.card:not(.matched)').length === 0) {
-            level++;
-            setTimeout(generateLevel, 1000);
-        }
-    } else {
-=======
         playSound(pointSound);
         score++;
         if (cardBoard.querySelectorAll('.card:not(.matched)').length === 0) {
@@ -445,15 +394,12 @@ function checkForMatch() {
         }
     } else {
         playSound(nopeSound);
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
         unflipCards();
     }
 
     updateScore();
 }
 
-<<<<<<< HEAD
-=======
 // Play sound effect
 function playSound(sound) {
     sound.currentTime = 0;
@@ -462,47 +408,29 @@ function playSound(sound) {
 }
 
 // Disable matched cards
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
 function disableCards() {
     firstCard.classList.add('matched');
     secondCard.classList.add('matched');
     resetBoard();
 }
 
-<<<<<<< HEAD
-=======
 // Unflip unmatched cards
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
 function unflipCards() {
     setTimeout(() => {
         firstCard.classList.remove('flip');
         secondCard.classList.remove('flip');
-<<<<<<< HEAD
-        firstCard.style.backgroundImage = `url(backC.png)`;
-        secondCard.style.backgroundImage = `url(backC.png)`;
-=======
         firstCard.style.backgroundImage = 'url(backC.png)';
         secondCard.style.backgroundImage = 'url(backC.png)';
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
         resetBoard();
     }, 1000);
 }
 
-<<<<<<< HEAD
-=======
 // Reset board after each turn
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
 function resetBoard() {
     [firstCard, secondCard] = [null, null];
     lockBoard = false;
 }
 
-<<<<<<< HEAD
-// Initialize the game
-startGame();
-
-
-=======
 // Show congratulations panel when level is complete
 function showCongratsPanel() {
     congratsPanel.style.display = 'block';
@@ -538,4 +466,3 @@ window.addEventListener('focus', () => {
 
 // Initialize the game
 startGame();
->>>>>>> a3d91178132ba82739c3f9d19367014bf5c2bf4c
