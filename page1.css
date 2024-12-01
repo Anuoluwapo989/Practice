@@ -1,26 +1,19 @@
-/* This is the code for the first page */
 body {
     margin: auto;
     padding: 50px;
-    background-color: #F96167;
+    background-color: var(--background-color); /* Updated depenting on the theme */
     text-align: center;
 }
-
-/* @font-face {
-    font-family: myFirstFont;
-    src: url(sansation_light.woff);
-} */
-
+  
 .title {
-    color: #F9E795;
+    color: var(--text-color); /* Updated depenting on the theme */
     font-family: "Kablammo", system-ui;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    font-variation-settings:
-        "MORF" 0;
+    font-variation-settings: "MORF" 0;
 }
-
+  
 p {
     font-size: 200px;
     margin: auto;
@@ -29,7 +22,7 @@ p {
     justify-content: center;
     align-items: center;
 }
-
+  
 .start {
     color: white;
     width: 100px;
@@ -38,25 +31,32 @@ p {
     border-radius: 50px;
     margin: auto;
     background-color: black;
+    cursor: pointer;
+    font-size: 1.5em;
+    padding: 10px;
+    transition: 0.3s;
 }
-
+  
 .start:hover {
-
     color: black;
-    width: 100px;
-    height: fit-content;
     border: 5px white solid;
-    border-radius: 50px;
-    margin: auto;
     background-color: white;
 }
-
+  
 .settings {
-    /* display: flex;
-    justify-content: flex-end; */
-    width: 100px;
-    height: 100px;
-    background-image: url('images/settings.png');
-    background-color: white;
-    
+    width: 60px;
+    height: 60px;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+}
+  
+.settings img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
 }

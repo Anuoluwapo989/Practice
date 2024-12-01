@@ -1,132 +1,16 @@
 body {
-    /* Page Settings */
-    padding: 0px;
-    height: 100vw;
-    margin: auto;
-    padding: 50px;
-    background-color: #F96167;
-    text-align: center;
-    justify-items: center;
-
-    /* Font Settings */
-    color: #F9E795;
-    font-family: "Kablammo", system-ui;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings:
-        "MORF" 0;
-
-}
-
-#game-board {
-    position: relative;
-    width: 80%;
-    height: 500px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-
-
-.flipcard {
-    background-color: transparent;
-    width: 200px;
-    height: 300px;
-    perspective: 1000px;
-    margin: 2px;
-    position: relative;
-    text-align: center;
-}
-
-.flipcard-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    /*This is for how long the flip is performed for */
-    transform-style: preserve-3d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-/* flipcard-inner is also part of this so that it moves at the same time when clicked */
-
-.flipcard.flipped .flipcard-inner {
-    transform: rotateY(180deg);
-}
-
-.flipcard-front,
-.flipcard-back {
-    position: absolute;
-    width: 100%; /* Match the width of the flipcard image */
-    height: 100%; /* Match the height of the flipcard image*/
-    position: absolute;
-    background-size: cover;
-    background-position: center;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden; /* These hide the back of the card after transforming */
-}
-
-.flipcard-front {
-    background-color: transparent;
-    color: black;
-    transform: rotateY(180deg);
-}
-
-.flipcard-back {
-    background-color: transparent;
-    color: white;
-    
-}
-
-#score-display{
-    background-color:#F9E795;
-    width: 200px;
-    height: 100px;
-    font: 100;
-    font-family: 'Courier New', Courier, monospace;
-    justify-content: left;
-
-}
-
-.flipcard.matched::after {
-    content: "✔"; /* Adds a checkmark */
-    font-size: 3em;
-    color: green;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-/*Hala's code*/
-
-
-
-/* body {
-    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #f4f4f4;
+    background-color: var(--background-color); /* Updated depenting on the theme */
+    color: var(--text-color); /* Updated depenting on the theme */
+    font-family: "Kablammo", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "MORF" 0;
 }
 
 .game-container {
@@ -158,7 +42,7 @@ h1 {
     height: 150px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-image: url('backC.png');
+    background-image: var(--card-back); /* Updated depenting on the theme */
     background-size: cover;
     cursor: pointer;
     transition: transform 0.4s;
@@ -179,14 +63,60 @@ h1 {
     padding: 10px 20px;
     font-size: 1em;
     cursor: pointer;
-    background-color: #007bff;
-    color: white;
+    background-color: var(--button-color); /* Updated depenting on the theme */
+    color: var(--button-text-color); /* Updated depenting on the theme */
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
 
 .restart-button:hover {
-    background-color: #0056b3;
+    background-color: var(--button-color);
+    color: var(--text-color); /* Updated depenting on the theme */
 }
-*/
+
+.congrats-panel {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.congrats-panel p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.congrats-panel button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.settings {
+    width: 60px;
+    height: 60px;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.settings img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
