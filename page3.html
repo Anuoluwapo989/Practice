@@ -35,7 +35,7 @@
     <script src="theme.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            playBackgroundMusic();
+            // playBackgroundMusic();
             // Apply theme
             const settings = JSON.parse(localStorage.getItem('settings')) || { theme: 'default' };
             themeManager.applyTheme(settings.theme);

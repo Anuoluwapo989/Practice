@@ -155,7 +155,6 @@
 //         document.body.appendChild(scoreDisplay);
 //         scoreDisplay.style.visibility = "visible";
 //     }
-
 //     scoreDisplay.textContent = `Your score is: ${score}`;
 //     console.log("Your Score:", score);
 // }
@@ -199,29 +198,29 @@
 
 //         setTimeout(() => {
 //             if (front1 === front2) { // Check if the flipped cards match
-            
+
 //                 counter++;
 //                 updateScore(counter);    //Use the helper function to update the score
 //                 //Remove the flipped class
 //                 flippedCards.forEach(cards => {
 //                     cards.classList.add("matched");
 //                 });
-    
+
 //                 if (document.querySelectorAll(".matched").length === number) {
 //                     setTimeout(() => alert("Congratulations, you win!"), 500);  //Tbh we can make this anything we want
 //                     console.log("Congrats!");
 //                 }
-    
+
 //             } else {
 //                 // Not a match, unflip cards after a short delay
 //                 console.log("No match, unflipping cards.");
 //                 setTimeout(() => {
 //                     flippedCards.forEach(cards => cards.classList.remove("flipped"));
 //                 }, 1000);
-    
+
 //             }
 //         }, 500);
-        
+
 //     }
 
 
@@ -238,24 +237,16 @@
 
 //from here on out is Hala's code 
 
-const cardDeck = [
-    "2C", "2D", "2H", "2S", "3C", "3D", "3H", "3S",
-    "4C", "4D", "4H", "4S", "5C", "5D", "5H", "5S",
-    "6C", "6D", "6H", "6S", "7C", "7D", "7H", "7S",
-    "8C", "8D", "8H", "8S", "9C", "9D", "9H", "9S",
-    "10C", "10D", "10H", "10S", "AC", "AD", "AH", "AS",
-    "JC", "JD", "JH", "JS", "QC", "QD", "QH", "QS",
-    "KC", "KD", "KH", "KS"
-].map(name => `./images/${name}`);
+
 
 "use strict";
 
 // Load settings from localStorage
-const settings = JSON.parse(localStorage.getItem('settings')) || { 
-    musicVolume: 50, 
-    effectsVolume: 50, 
-    music: true, 
-    theme: 'default', 
+const settings = JSON.parse(localStorage.getItem('settings')) || {
+    musicVolume: 50,
+    effectsVolume: 50,
+    music: true,
+    theme: 'default',
     difficulty: 'easy'
 };
 
@@ -285,6 +276,7 @@ var cardDeck = [
     "JC.png", "JD.png", "JH.png", "JS.png", "QC.png", "QD.png", "QH.png", "QS.png",
     "KC.png", "KD.png", "KH.png", "KS.png"
 ];
+
 
 // Game state variables
 let level = 1;
@@ -317,35 +309,85 @@ document.querySelector('.settings').addEventListener('click', () => {
 function startGame() {
     level = 1;
     score = 0;
+    var fliptime = getFlipDuration();
+
+    peekaboo(fliptime);
     updateScore();
     generateLevel();
 }
 
+function peekaboo(runtime) {
+
+
+    // var isPeekabooActive = true;
+    const cards = document.querySelectorAll('.card');
+    // Use a regular for loop to add the 'flipped' class
+
+    cards.forEach(card => card.classList.add('flip')); // Show all cards
+
+
+    // Set a timeout to remove the 'flipped' class after runtime
+    setTimeout(() => {
+        cards.forEach(card => card.classList.remove('flip')); // Hide all cards
+    }, runtime);
+
+}
 // Update the score display
 function updateScore() {
     levelDisplay.textContent = `Level: ${level}`;
     scoreDisplay.textContent = `Score: ${score}`;
 }
 
+
 // Generate a new level
 function generateLevel() {
     cardBoard.innerHTML = '';
-    let numCards = level * 2 + 2;  // Adjusted to ensure levels progress correctly
+    let numCards = (level+2 * level+2);  // Adjusted to ensure levels progress correctly
+    
     const cards = [...cardDeck].sort(() => Math.random() - 0.5).slice(0, numCards / 2);
     const cardPairs = [...cards, ...cards].sort(() => Math.random() - 0.5);
 
     // Determine grid layout based on number of cards
     const cols = Math.ceil(Math.sqrt(numCards));
-    const rows = Math.ceil(numCards / cols);
+    const rows = Math.ceil(numCards / cols); 
+    //**Suggestion**
+    //We can make the number of cards always a square and then 
+    //check if there is going to be any overflow and adjust only the height
+   
     cardBoard.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
     cardBoard.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
 
     cardPairs.forEach(card => {
-        const cardElement = document.createElement('div');
-        cardElement.classList.add('card');
-        cardElement.dataset.card = card;
+        // Show card back initially
+        const cardElement = document.createElement("div");
+        cardElement.classList.add("card"); //This adds a class for the div element.
+        // cardElement.dataset.card = card;
+
+
+        const cardInner = document.createElement("div");
+        cardInner.classList.add("card-inner");
+
+        const cardFront = document.createElement("div");
+        cardFront.classList.add("front");
+        cardFront.style.backgroundImage = `url('${card}')`;
+
+        const cardBack = document.createElement("div");
+        cardBack.classList.add("back");
+        cardBack.style.backgroundImage = `url(backC.jpg)`;
+
+        cardInner.appendChild(cardFront); //We then have to add the front and back to flipcardInner
+        cardInner.appendChild(cardBack);
+        cardElement.appendChild(cardInner);
         cardElement.addEventListener('click', flipCard);
-        cardElement.style.backgroundImage = `url('backC.png')`;  // Show card back initially
+
+        //Idk if we will be needing this
+        // document.querySelectorAll('.card').forEach(card => {
+        //     card.addEventListener('click', () => {
+        //          card.classList.toggle('flip');
+        //          checkForMatch();
+        //     });
+        // });
+
         cardBoard.appendChild(cardElement);
     });
 }
@@ -368,7 +410,6 @@ function flipCard() {
     if (this === firstCard) return;
 
     this.classList.add('flip');
-    this.style.backgroundImage = `url(${this.dataset.card})`;
 
     if (!firstCard) {
         firstCard = this;
@@ -382,22 +423,28 @@ function flipCard() {
 
 // Check if two flipped cards match
 function checkForMatch() {
-    const isMatch = firstCard.dataset.card === secondCard.dataset.card;
+    var first = firstCard.querySelector(".front");
+    var second = secondCard.querySelector(".front");
+    const isMatch = first.style.backgroundImage === second.style.backgroundImage;
+    console.log(first.style.backgroundImage);
+    setTimeout(() => {
+        if (isMatch) {
+            disableCards();
+            score++;
+            playSound(pointSound);
+            updateScore();
+            console.log(cardBoard.querySelectorAll('.card:not(.matched)').length);
 
-    if (isMatch) {
-        disableCards();
-        playSound(pointSound);
-        score++;
-        if (cardBoard.querySelectorAll('.card:not(.matched)').length === 0) {
-            showCongratsPanel();
-            playSound(levelSound);
+            if (cardBoard.querySelectorAll('.card:not(.matched)').length === 0) {
+                showCongratsPanel();
+                console.log("Congrats");
+                playSound(levelSound);
+            }
+        } else {
+            playSound(nopeSound);
+            unflipCards();
         }
-    } else {
-        playSound(nopeSound);
-        unflipCards();
-    }
-
-    updateScore();
+    }, 500);
 }
 
 // Play sound effect
@@ -419,8 +466,8 @@ function unflipCards() {
     setTimeout(() => {
         firstCard.classList.remove('flip');
         secondCard.classList.remove('flip');
-        firstCard.style.backgroundImage = 'url(backC.png)';
-        secondCard.style.backgroundImage = 'url(backC.png)';
+        // firstCard.style.backgroundImage = 'url(backC.png)';
+        // secondCard.style.backgroundImage = 'url(backC.png)';
         resetBoard();
     }, 1000);
 }
@@ -437,6 +484,7 @@ function showCongratsPanel() {
     document.getElementById('next-level').addEventListener('click', () => {
         congratsPanel.style.display = 'none';
         level++;
+        score++;
         updateScore();  // Update level display immediately
         generateLevel();
     });
@@ -448,12 +496,12 @@ function showCongratsPanel() {
 // Pause and resume game logic
 function pauseGame() {
     backgroundMusic.pause();
-   
+
 }
 
 function resumeGame() {
     backgroundMusic.play();
-   
+
 }
 
 // When returning from settings page
