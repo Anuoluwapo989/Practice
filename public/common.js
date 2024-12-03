@@ -4,7 +4,7 @@ let backgroundMusic;
 
 function playBackgroundMusic() {
     if (!backgroundMusic) {
-        backgroundMusic = new Audio('background.mp3');
+        backgroundMusic = new Audio('../assets/background.mp3');
         backgroundMusic.loop = true;
 
         const settings = JSON.parse(localStorage.getItem('settings')) || { music: true, musicVolume: 50 };

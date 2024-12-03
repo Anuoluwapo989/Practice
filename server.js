@@ -11,6 +11,7 @@ const db = require('./db');
 const argon2 = require("argon2");
 const path = require('path');
 
+
 const mysqlStore = require('express-mysql-session')(session);
 
 
@@ -58,29 +59,12 @@ app.use(session({
 app.get('/', (req, res) => {
     const { userId } = req.session
     console.log(userId);
-    res.send(`
-    <h1> Welcome!</h1>
-    ${userId ? `<a href = '/home'> Home </a>
-    <form method='post' action='/logout'>
-    <button>Logout</button>
-    </form>` : `<a href = '/login'> Login </a>
-    <a href = '/register'> Register </a>
-`}
-    `)
+    res.sendFile(path.join(__dirname, 'public', 'cover.html'));
+
 })
 
 app.get('/register', (req, res) => {
-    res.send(`
-    <h1>Register</h1>
-    <form method='post' action='/Register'>
-    <input type='text' name='firstName' placeholder='First Name' required />
-    <input type='text' name='lastName' placeholder='Last Name' required />
-    <input type='email' name='email' placeholder='Email' required />
-    <input type='password' name='password' placeholder='password' required/>
-    <input type='submit' />
-    </form>
-    <a href='/login'>Login</a>
-    `)
+    res.sendFile(path.join(__dirname, 'public', 'register.html'));
 })
 
 app.post('/register', async (req, res, next) => {
@@ -107,16 +91,8 @@ app.post('/register', async (req, res, next) => {
 });
 
 app.get('/login', (req, res) => {
-    res.send(`
-    <h1>Login</h1>
-    <form method='post' action='/login'>
-    <input type='email' name='email' placeholder='Email' required />
-    <input type='password' name='password' placeholder='password' required/>
-    <input type='submit' />
-    </form>
-    <a href='/register'>Register</a>
-    `)
-})
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
 
 app.post('/login', async (req, res, next) => {
     try {
@@ -140,10 +116,6 @@ app.post('/login', async (req, res, next) => {
             );
             return res.redirect('/login')
         }
-
-
-
-
     } catch (e) {
         console.log(e);
     }

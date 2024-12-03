@@ -2,7 +2,7 @@
 
 class SoundManager {
     constructor() {
-        this.backgroundMusic = new Audio('../assets/background.mp3'); 
+        this.backgroundMusic = new Audio('../assets/background.wav'); 
         this.pointSound = new Audio('../assets/point.wav');
         this.nopeSound = new Audio('../assets/nope.wav');
         this.levelSound = new Audio('../assets/level.wav');

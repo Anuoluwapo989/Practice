@@ -1,0 +1,17 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    /* display: block; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    background-color: #faecb2;
+    text-align: center;
+}
+
+.upper {
+    font-family: Arial, sans-serif;
+    display: flex;
+}
