@@ -1,6 +1,6 @@
 :root {
     --background-color: #efe8d9;
-    --text-color: #f9db54;
+    --text-color: red
     --button-color: #000;
     --button-text-color: #fff;
     --card-back: url('../assets/backC.png');
@@ -13,6 +13,7 @@ body {
     text-align: center;
     color: var(--text-color);
     font-family: "Kablammo", system-ui;
+    background-color: red;
 }
 
 .settings-container {

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Settings</title>
+    <link rel="stylesheet" href="sounds.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kablammo&display=swap');
+    </style>
+</head>
+<body>
+    <div class="back-button" onclick="goBack()">
+        <img src="back.png" alt="Back">
+    </div>
+
+    <div class="sound-settings">
+        <h1>Sound Settings</h1>
+
+        <div class="sound-option">
+            <label for="music-toggle">Music</label>
+            <input type="checkbox" id="music-toggle">
+        </div>
+
+        <div class="sound-option">
+            <label for="effects-toggle">Sound Effects</label>
+            <input type="checkbox" id="effects-toggle">
+        </div>
+
+        <div class="sound-option">
+            <label for="music-volume">Music Volume</label>
+            <input type="range" id="music-volume" min="0" max="100" value="50">
+        </div>
+
+        <div class="sound-option">
+            <label for="effects-volume">Sound Effects Volume</label>
+            <input type="range" id="effects-volume" min="0" max="100" value="50">
+        </div>
+
+        <button onclick="saveSounds()">Save Settings</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function saveSounds() {
+            const musicEnabled = document.getElementById('music-toggle').checked;
+            const effectsEnabled = document.getElementById('effects-toggle').checked;
+            const musicVolume = document.getElementById('music-volume').value;
+            const effectsVolume = document.getElementById('effects-volume').value;
+
+            const settings = {
+                music: musicEnabled,
+                musicVolume: musicVolume,
+                effectsVolume: effectsVolume,
+                effects: effectsEnabled,
+            };
+
+            localStorage.setItem('settings', JSON.stringify(settings));
+            alert('Sound settings saved!');
+        }
+
+        window.onload = () => {
+            const settings = JSON.parse(localStorage.getItem('settings')) || {
+                music: true,
+                musicVolume: 50,
+                effectsVolume: 50,
+                effects: true
+            };
+
+            document.getElementById('music-toggle').checked = settings.music;
+            document.getElementById('effects-toggle').checked = settings.effects;
+            document.getElementById('music-volume').value = settings.musicVolume;
+            document.getElementById('effects-volume').value = settings.effectsVolume;
+        };
+    </script>
+</body>
+</html>

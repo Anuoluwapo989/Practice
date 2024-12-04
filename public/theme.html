@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Settings</title>
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kablammo&display=swap');
+    </style>
+</head>
+<body>
+    <div class="back-button" onclick="goBack()">
+        <img src="back.png" alt="Back">
+    </div>
+
+    <div class="theme-settings">
+        <h1>Choose Your Theme</h1>
+
+        <div class="theme-option">
+            <input type="radio" id="default-theme" name="theme" value="default" checked>
+            <label for="default-theme">Default</label>
+        </div>
+
+        <div class="theme-option">
+            <input type="radio" id="dark-theme" name="theme" value="dark">
+            <label for="dark-theme">Dark</label>
+        </div>
+
+        <div class="theme-option">
+            <input type="radio" id="light-theme" name="theme" value="light">
+            <label for="light-theme">Light</label>
+        </div>
+
+        <div class="theme-option">
+            <input type="radio" id="blue-theme" name="theme" value="blue">
+            <label for="blue-theme">Blue</label>
+        </div>
+
+        <button onclick="saveTheme()">Save Theme</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function saveTheme() {
+            const theme = document.querySelector('input[name="theme"]:checked').value;
+            localStorage.setItem('theme', theme);
+            alert('Theme saved!');
+        }
+
+        window.onload = () => {
+            const theme = localStorage.getItem('theme');
+            if (theme) {
+                document.querySelector(`input[name="theme"][value="${theme}"]`).checked = true;
+            }
+        };
+    </script>
+</body>
+</html>

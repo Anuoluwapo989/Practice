@@ -309,29 +309,29 @@ document.querySelector('.settings').addEventListener('click', () => {
 function startGame() {
     level = 1;
     score = 0;
-    var fliptime = getFlipDuration();
+    // var fliptime = getFlipDuration();
 
-    peekaboo(fliptime);
+    // peekaboo(fliptime);
     updateScore();
     generateLevel();
 }
 
-function peekaboo(runtime) {
+// function peekaboo(runtime) {
 
 
-    // var isPeekabooActive = true;
-    const cards = document.querySelectorAll('.card');
-    // Use a regular for loop to add the 'flipped' class
+//     // var isPeekabooActive = true;
+//     const cards = document.querySelectorAll('.card');
+//     // Use a regular for loop to add the 'flipped' class
 
-    cards.forEach(card => card.classList.add('flip')); // Show all cards
+//     cards.forEach(card => card.classList.add('flip')); // Show all cards
 
 
-    // Set a timeout to remove the 'flipped' class after runtime
-    setTimeout(() => {
-        cards.forEach(card => card.classList.remove('flip')); // Hide all cards
-    }, runtime);
+//     // Set a timeout to remove the 'flipped' class after runtime
+//     setTimeout(() => {
+//         cards.forEach(card => card.classList.remove('flip')); // Hide all cards
+//     }, runtime);
 
-}
+// }
 // Update the score display
 function updateScore() {
     levelDisplay.textContent = `Level: ${level}`;
@@ -342,18 +342,19 @@ function updateScore() {
 // Generate a new level
 function generateLevel() {
     cardBoard.innerHTML = '';
-    let numCards = (level+2 * level+2);  // Adjusted to ensure levels progress correctly
-    
+    console.log("generated",level)
+    let numCards = level * 2;  // Adjusted to ensure levels progress correctly
+    // console.log(numCards)
     const cards = [...cardDeck].sort(() => Math.random() - 0.5).slice(0, numCards / 2);
+    // console.log(cards)
     const cardPairs = [...cards, ...cards].sort(() => Math.random() - 0.5);
+    // console.log(cardPairs)
 
     // Determine grid layout based on number of cards
     const cols = Math.ceil(Math.sqrt(numCards));
-    const rows = Math.ceil(numCards / cols); 
-    //**Suggestion**
-    //We can make the number of cards always a square and then 
-    //check if there is going to be any overflow and adjust only the height
-   
+    // console.log('cols:',cols)
+    const rows = Math.ceil(numCards / cols);
+    // console.log('rows:', rows)
     cardBoard.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
     cardBoard.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
 
@@ -483,8 +484,7 @@ function showCongratsPanel() {
     congratsPanel.style.display = 'block';
     document.getElementById('next-level').addEventListener('click', () => {
         congratsPanel.style.display = 'none';
-        level++;
-        score++;
+        
         updateScore();  // Update level display immediately
         generateLevel();
     });

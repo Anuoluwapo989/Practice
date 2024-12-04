@@ -24,7 +24,7 @@ db.getUser = (id) =>{
     });
 };
  
- 
+
  
  
  
@@ -53,5 +53,5 @@ db.insertUser = (firstName, lastName, email, password) =>{
     });
 };
  
-
+module.exports = db;
  

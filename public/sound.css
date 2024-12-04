@@ -1,0 +1,65 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    color: #f9db54;
+    font-family: "Kablammo", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "MORF" 0;
+    margin: 0;
+}
+
+.sound-settings {
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.sound-settings h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.sound-option {
+    margin: 10px;
+    font-size: 1.2em;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f9db54;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+button:hover {
+    background-color: #ffcb00;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.back-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}

@@ -4,13 +4,13 @@ class ThemeManager {
     constructor() {
         // Define theme settings (colors, background image, etc.)
         this.themes = {
-            "default": { background: "#efe8d9", text: "#f9db54", button: "#000", cardBack: "backC.png" },
-            "purple": { background: "#9f8dbe", text: "#cccccc", button: "#45404e", cardBack: "purple_back.png" },
-            "red": { background: "#9c0909", text: "#000", button: "#a57575", cardBack: "red_back.png" },
-            "blue": { background: "#7593a5", text: "#cccccc", button: "#d3d3d3", cardBack: "blue_back.png" },
-            "gray": { background: "#a4a7a9", text: "#000", button: "#bfd1dd", cardBack: "gray_back.png" },
-            "green": { background: "#699d8d", text: "#cccccc", button: "#c4efe2", cardBack: "green_back.png" },
-            "dark": { background: "#1c2727", text: "#cccccc", button: "#414e4e", cardBack: "dark_back.png" }
+            "default": { background: "#efe8d9", text: "#f9db54", button: "#000", cardBack: "../assets/backC.png" },
+            "purple": { background: "#9f8dbe", text: "#cccccc", button: "#45404e", cardBack: "../assets/purple_back.png" },
+            "red": { background: "#9c0909", text: "#000", button: "#a57575", cardBack: "../assets/red_back.png" },
+            "blue": { background: "#7593a5", text: "#cccccc", button: "#d3d3d3", cardBack: "../assets/blue_back.png" },
+            "gray": { background: "#a4a7a9", text: "#000", button: "#bfd1dd", cardBack: "../assets/gray_back.png" },
+            "green": { background: "#699d8d", text: "#cccccc", button: "#c4efe2", cardBack: "../assets/green_back.png" },
+            "dark": { background: "#1c2727", text: "#cccccc", button: "#414e4e", cardBack: "../assets/dark_back.png" }
         };
 
         // Get the current theme from localStorage or use the default theme
