@@ -19,6 +19,6 @@ function playBackgroundMusic() {
         backgroundMusic.play();
     }
 }
-
+// export {}
 // to be accessible globally
 window.playBackgroundMusic = playBackgroundMusic;
