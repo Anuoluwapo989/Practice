@@ -46,3 +46,9 @@ if (error) {
 
     document.getElementById('error-message').textContent = errorMessage;
 }
+
+// if (response.ok) { // This automatically checks if the status is in the 200s
+//     window.location.href = '/page1.html';
+// } else if (response.status === 401) {
+//     showError("Wrong email or password");
+// }

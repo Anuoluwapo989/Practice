@@ -7,8 +7,13 @@
     "express": "^4.21.1",
     "express-mysql-session": "^3.0.3",
     "express-session": "^1.18.1",
-    "mysql": "^2.18.1",
-    "mysql2": "^3.11.5",
+    "mysql2": "^3.17.4",
     "path": "^0.12.7"
+  },
+  "overrides": {
+    "minimatch": "^10.2.1",
+    "tar": "^7.5.8",
+    "glob": "latest",
+    "rimraf": "^6.0.0"
   }
 }
